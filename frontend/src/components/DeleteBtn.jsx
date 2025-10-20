@@ -36,7 +36,7 @@ function InsertBtn({fetchContacts, id}) {
         setLoading(true);
         
         try {
-            const res = await fetch(`http://localhost:4000/contacts/${id}`,{
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/contacts/${id}`,{
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json"

@@ -12,6 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname,"../frontend/dist")));
+
 const dbconfig = {
     server: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT),
@@ -117,7 +119,7 @@ app.put("/contacts/:id", async (req, res) => {
 app.delete("/contacts/:id", async (req, res) => {
     let pool;
     try {
-        const { id } = req.params;        
+        const { id } = req.params;
         pool = await getConnection();
         const request = await pool.request()
         .input('Id', sql.Int, id)
@@ -131,6 +133,7 @@ app.delete("/contacts/:id", async (req, res) => {
     }
 });
 
+
 app.listen(process.env.PORT, ()=> {
     console.log(`Servidor en el puerto ${process.env.PORT}`);
     getConnection()
@@ -141,4 +144,4 @@ app.listen(process.env.PORT, ()=> {
     .catch((error)=>{
         console.error("Failed Connection X:" , error.message);
     })
-})
+});

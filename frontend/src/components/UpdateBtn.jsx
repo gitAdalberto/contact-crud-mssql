@@ -52,7 +52,7 @@ function InsertBtn({fetchContacts, Id, Nombre, Apellido, Email, Telefono, DPI}) 
             return createToast('Actualizar contacto', 'No puedes dejar campos vacios!', 'error');
         };
         try {
-            const res = await fetch(`http://localhost:4000/contacts/${Id}`,{
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/contacts/${Id}`,{
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

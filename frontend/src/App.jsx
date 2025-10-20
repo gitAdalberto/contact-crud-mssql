@@ -14,7 +14,11 @@ function App() {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch("http://localhost:4000/contacts");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/contacts`);
+      if (res.status === 404 ) {
+         setContacts([]);
+         return;
+      }
       if (!res.ok) throw new Error("Error al obtener contactos");
       const data = await res.json();
       setContacts(data);

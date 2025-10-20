@@ -52,7 +52,7 @@ function InsertBtn({fetchContacts}) {
             return createToast('Insertar contacto', 'No puedes dejar campos vacios!', 'error');
         };
         try {
-            const res = await fetch("http://localhost:4000/contacts",{
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/contacts`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
